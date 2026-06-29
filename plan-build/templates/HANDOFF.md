@@ -9,6 +9,7 @@
 
 **Required reading (this phase):**
 
+- docs/\_handoff/lessons.md - reusable toolkit (gotchas, script/verify outcomes); reuse before re-deriving
 - docs/\_handoff/{{LEAF}}.md - {{WHY}}
 
 **Index (load on demand):**
@@ -18,6 +19,7 @@
 - phases.md - phases + per-phase verify steps
 - process.md - how we work (read before committing)
 - progress-log.md - dated history of decisions/learnings/overwrites
+- lessons.md - curated, accreted toolkit (carried in Required reading)
 
 **Open decisions:** {{OPEN_DECISIONS_OR_SEE_PROGRESS_LOG_TAIL}}
 **Last updated:** {{DATE}} by {{SESSION_HANDLE}}

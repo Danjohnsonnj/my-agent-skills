@@ -31,4 +31,5 @@ adoption modes and a worked example.
 - `SKILL.md` - slim skill body (entry point).
 - `reference.md` - methodology detail (adoption modes, worked example).
 - `templates/` - parameterized artifact templates (`HANDOFF.md`,
-  `process.md`, `product-brief.md`, `tech-brief.md`, `phases.md`, `progress-log.md`).
+  `process.md`, `product-brief.md`, `tech-brief.md`, `phases.md`, `progress-log.md`,
+  `lessons.md`).

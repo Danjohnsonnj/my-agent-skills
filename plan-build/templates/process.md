@@ -14,14 +14,16 @@ Durable methodology. Read once per session before committing. Reached from HANDO
 
 - Briefs hold CURRENT truth: overwrite in place; correct mistakes directly.
 - progress-log.md holds HISTORY: append-only dated entries; never rewritten.
+- lessons.md holds the CURATED TOOLKIT: reusable gotchas and script/verify outcomes; add when useful, prune when obsolete.
 - Single source of truth per fact: the next action lives only in HANDOFF.md.
 
 ## Session-handoff ritual (user-initiated wrap-up)
 
 1. Overwrite affected brief(s) in place.
 2. Refresh HANDOFF.md (phase, next action, next-phase required reading, open decisions, last-updated).
-3. Append a dated progress-log.md entry (happened / learned / overwrote).
-4. Commit per the active adoption mode below, only when the user asks.
+3. Append a dated progress-log.md entry (happened / verified / learned / overwrote).
+4. Fold any reusable gotcha or script/verify outcome into lessons.md (prune obsolete ones).
+5. Commit per the active adoption mode below, only when the user asks.
 
 ## Adoption mode: own-project (default)
 

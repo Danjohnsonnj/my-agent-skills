@@ -82,3 +82,22 @@ The suite is polyglot but **bash-dominant**.
 
 Make every script executable (`chmod +x`) and runnable from the skill directory
 with a relative path (`scripts/<name>`).
+
+## Harvesting lessons into the suite (human-gated)
+
+The suite improves in two tiers, and only the first is automatic.
+
+- **Type-1 (automatic, per project):** `plan-build` accretes a `lessons.md` leaf
+  under each project's `docs/_handoff/` - reusable gotchas, script/verify
+  outcomes, and crystallization candidates - and carries it in cold-start
+  Required reading. This is local learning; it changes no skill.
+- **Type-2 (manual, the harvest ritual):** periodically review the accumulated
+  `lessons.md` files across projects. Where a signal **recurs** - the same gotcha
+  bites repeatedly, or the same `Crystallize?` candidate keeps appearing - turn it
+  into a **proposed** edit to a skill's `SKILL.md` or `scripts/`.
+
+The cage (D7): the control plane (skills and their scripts) is **never auto-edited
+from learnings**. A harvested signal becomes a written proposal that goes through
+`review-plan` - whose execution-reliability lens is built to flag exactly these
+crystallization candidates - and lands only after the usual user-gated approval.
+This section documents a process; it adds no automation.
