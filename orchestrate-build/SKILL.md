@@ -52,12 +52,12 @@ flowchart TD
 Per cycle, the orchestrator:
 
 1. **Size the chunk** from `phases.md` (see Chunking).
-2. **Checkpoint git** (WIP branch/stash) so a bad chunk is recoverable.
+2. **Checkpoint git** so a bad chunk is recoverable - run `scripts/checkpoint.sh` (see Workspace & git; mutating, execute-or-STOP).
 3. **Overwrite `docs/_handoff/_bus/handoff.md`** from `templates/handoff.md` for this one chunk.
 4. **Launch exactly ONE subagent** with `templates/dispatch-prompt.md` (serialized).
 5. **Receive the handback** (`docs/_handoff/_bus/handback.md`, overwritten by the subagent).
-6. **Branch on the handback status** (independent of the re-verify result): `blocked` -> user gate (escape hatch 1); `partial` -> size and dispatch a continuation chunk, no rollback; `failed` -> roll back to the checkpoint, then retry or trip the circuit-breaker; `complete` -> re-verify.
-7. **Re-verify a `complete` handback** independently (see Verification). On pass: advance the checkpoint, fold durable state into `HANDOFF.md` + append `progress-log.md`. On fail: roll back to the checkpoint, then retry or trip the circuit-breaker.
+6. **Branch on the handback status** (independent of the re-verify result): `blocked` -> user gate (escape hatch 1); `partial` -> size and dispatch a continuation chunk, no rollback; `failed` -> roll back to the checkpoint (`scripts/rollback.sh`), then retry or trip the circuit-breaker; `complete` -> re-verify.
+7. **Re-verify a `complete` handback** independently with `scripts/run-verify.sh` (see Verification). On pass: advance the checkpoint, fold durable state into `HANDOFF.md` + append `progress-log.md`. On fail: roll back to the checkpoint (`scripts/rollback.sh`), then retry or trip the circuit-breaker.
 8. **Check the handoff signal** before sizing the next chunk.
 
 ## The bus
@@ -77,7 +77,7 @@ Canonical project state stays in `plan-build`'s `HANDOFF.md` (current truth, ove
 
 The correctness backbone: a subagent may report `complete` without actually running the check, and a trusted false pass compounds across chunks.
 
-- **Deterministic** verify (tests, build, file exists): the orchestrator **re-runs it itself** after the handback, before advancing. This is the only ground truth.
+- **Deterministic** verify (tests, build, file exists): the orchestrator **re-runs it itself** after the handback, before advancing. This is the only ground truth. Run `scripts/run-verify.sh <verify command>`; it is the single source of truth for this step and emits one structured `VERIFY RESULT: OK|FAIL` line plus the verify's own exit code to branch on. Only if you cannot execute it, read it as a spec and run the verify command yourself, treating its exit code as ground truth (read/verify tier: execute-or-infer).
 - **Not runnable**: require verbatim evidence in the handback and inspect it.
 - **Subjective** ("the design reads well"): goes to the **user gate**; the orchestrator does not self-certify.
 
@@ -87,8 +87,10 @@ Testing is not a separate stage: writing/running tests is just a verifiable chun
 
 Subagent file edits persist in the shared tree, so a failed/`partial` chunk can leave the tree broken for the next one. Re-verification detects breakage but does not recover it.
 
-- The orchestrator records a **known-good checkpoint** before each dispatch via a WIP mechanism it owns (dedicated WIP branch, or `git stash`/tags) - never real commits unless the user asks.
-- On a failed re-verify, **roll back** to the checkpoint before retry/re-dispatch. Successful chunks advance the checkpoint. **Green-on-exit** is the target for completed chunks; `partial` may leave mid-edit state.
+These two steps are **mutating**: run the script (execute-or-STOP). If you cannot execute it, STOP and surface a blocker to the user - never free-hand a destructive git operation from this prose.
+
+- The orchestrator records a **known-good checkpoint** before each dispatch via a WIP mechanism it owns - never real commits unless the user asks. Run `scripts/checkpoint.sh`; it is the single source of truth and snapshots the tracked + untracked tree into a stash entry without moving any branch, recording the checkpoint SHA to `docs/_handoff/_bus/.checkpoint`.
+- On a failed re-verify, **roll back** to the checkpoint before retry/re-dispatch by running `scripts/rollback.sh`, which restores the working tree to that recorded checkpoint. Successful chunks advance the checkpoint (re-run `checkpoint.sh`). **Green-on-exit** is the target for completed chunks; `partial` may leave mid-edit state.
 - **Subagents never commit; the orchestrator owns git.**
 
 ## Chunking
@@ -131,5 +133,6 @@ The orchestrator is itself a long-lived session that grows. Handing off to a fre
 ## Resources
 
 - Operational detail (chunk sizing, git mechanics, continuation re-dispatch, verification protocol, budget defaults, worked session): [reference.md](reference.md).
+- Scripts (single source of truth for their step): `scripts/checkpoint.sh`, `scripts/rollback.sh` (mutating, execute-or-STOP), `scripts/run-verify.sh` (read/verify, execute-or-infer). Authoring conventions: repo-root `SCRIPTS.md`.
 - Contracts: `templates/handoff.md`, `templates/handback.md`, `templates/dispatch-prompt.md`.
 - Design rationale and locked decisions: [the proposal](../plan-build/proposals/orchestrated-subagents.md).

@@ -39,5 +39,8 @@ explicitly - orchestration is consequential and should be chosen, not ambient.
 - `SKILL.md` - slim skill body (entry point: loop, bus, rules).
 - `reference.md` - operational detail (chunk sizing, git checkpoint/rollback,
   continuation re-dispatch, verification protocol, budget defaults, worked session).
+- `scripts/` - executable single-source-of-truth steps: `checkpoint.sh`,
+  `rollback.sh` (mutating, execute-or-STOP) and `run-verify.sh` (read/verify,
+  execute-or-infer). Authoring conventions live in the repo-root `SCRIPTS.md`.
 - `templates/` - the bus contracts (`handoff.md`, `handback.md`) and the literal
   cold-start `dispatch-prompt.md`.
