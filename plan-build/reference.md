@@ -78,6 +78,9 @@ The pointer block lives in `templates/AGENTS.snippet.md`. Apply it without clobb
 - `HANDOFF.md` IS the hand-off document that `resume-work` consumes.
 - The `AGENTS.md` pointer is what `resume-work` and `research-repo` read first.
 - Do not duplicate their read logic here; this skill only writes the surfaces they read.
+- `orchestrate-build` is the opt-in DRIVE side: it consumes these same surfaces
+  (`HANDOFF.md`, `phases.md` verifies) to run a serialized subagent dispatch loop;
+  it adds no behavior here and changes nothing in this skill.
 
 ## Worked example (generic)
 
