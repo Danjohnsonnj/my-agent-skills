@@ -106,7 +106,7 @@ Handing off to a fresh orchestrator is user-initiated on a deterministic proxy
   token use, so treat it as a soft early warning only.
 - **The handoff:** refresh `HANDOFF.md` (current phase, next action, next-phase
   required reading), leave the bus and brief tree on disk, and let the user start
-  a fresh orchestrator that cold-starts from `AGENTS.md -> HANDOFF.md`.
+  a fresh orchestrator that cold-starts from the user-provided `HANDOFF.md`.
 
 ## Budget defaults (observe and refine)
 
@@ -187,7 +187,7 @@ starts a fresh orchestrator from `HANDOFF.md`.
   │                             │ user starts fresh orchestrator
   │   ┌─────────────────────────▼───────────────────────┐
   │   │ Orchestrator B  (cold start, fresh ctx)          │
-  │   │  reads AGENTS.md → HANDOFF.md → leaves           │
+  │   │  reads HANDOFF.md → leaves                       │
   │   │  resumes where A stopped                         │
   │   └─────────────────────────┬───────────────────────┘
   │                             │ overwrite handoff.md (chunk 04) …

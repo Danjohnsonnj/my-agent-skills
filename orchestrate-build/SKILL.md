@@ -17,7 +17,7 @@ This is the DRIVE side; `plan-build` is the WRITE side. This skill reuses `plan-
 
 ## Prerequisites
 
-- A `plan-build` tree exists under `docs/_handoff/` (AGENTS.md pointer, HANDOFF.md, phases.md with per-phase `Verify:` steps). If not, run the planning phase below first.
+- A `plan-build` tree exists under `docs/_handoff/` (HANDOFF.md, phases.md with per-phase `Verify:` steps) and you have been pointed at `HANDOFF.md` explicitly. If not, run the planning phase below first.
 - The harness supports both **write-capable** subagents (build/test chunks) and **read-only** subagents (discovery legwork).
 - The orchestrator has the same workspace + tool access as subagents, so it can re-run verifies and own git.
 
@@ -25,7 +25,7 @@ This is the DRIVE side; `plan-build` is the WRITE side. This skill reuses `plan-
 
 ```mermaid
 flowchart TD
-    coldStart["Orchestrator cold-start: AGENTS.md -> HANDOFF.md"] --> planning{"Plan approved?"}
+    coldStart["Orchestrator cold-start: user-provided HANDOFF.md"] --> planning{"Plan approved?"}
     planning -->|No| interview["Orchestrator runs planning interview WITH USER; read-only research subagents do legwork"]
     interview --> planning
     planning -->|Yes| sizeChunk["Size next chunk from phases.md (coupling override)"]

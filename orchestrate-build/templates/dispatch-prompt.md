@@ -5,7 +5,7 @@
 
 Cold-start sub-session. Do not assume any prior context.
 
-1. Read `AGENTS.md` -> `docs/_handoff/HANDOFF.md` -> the "Required reading" listed
+1. Read `docs/_handoff/HANDOFF.md` -> the "Required reading" listed
    in `docs/_handoff/_bus/handoff.md`.
 2. Do exactly the chunk described in `docs/_handoff/_bus/handoff.md`. Stay in
    scope; the brief names what is out of scope.

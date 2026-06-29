@@ -10,7 +10,7 @@ and hand back.
 
 **Required reading (load only these):**
 
-- `AGENTS.md` -> `docs/_handoff/HANDOFF.md`
+- `docs/_handoff/HANDOFF.md`
 - {{LEAF_OR_CODE_PATH}} - {{WHY}}
 
 **Deterministic verify (the chunk exit test):** {{COMMAND_OR_CHECK}}

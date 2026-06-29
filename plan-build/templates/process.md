@@ -1,15 +1,14 @@
 # Process - how we work on this effort
 
-Durable methodology. Read once per session before committing. Reached via AGENTS.md -> HANDOFF.md.
+Durable methodology. Read once per session before committing. Reached from HANDOFF.md.
 
 **Adoption mode:** {{own-project | contributor}}
 
 ## Cold-start protocol
 
-1. Read AGENTS.md (auto-loaded); it points here and to HANDOFF.md.
-2. Read HANDOFF.md (always).
-3. Load ONLY the leaves under HANDOFF.md "Required reading (this phase)".
-4. Pull any other leaf from the Index on demand.
+1. Start from HANDOFF.md — the explicit entry point you are pointed at directly; read it always (phase, next action, required reading).
+2. Load ONLY the leaves under HANDOFF.md "Required reading (this phase)".
+3. Pull any other leaf from the Index on demand.
 
 ## Update discipline
 
@@ -32,5 +31,5 @@ Durable methodology. Read once per session before committing. Reached via AGENTS
 
 - Keep artifacts OUT of any upstream PR. Do NOT add them to the tracked .gitignore.
 - Keep code and artifacts in SEPARATE commits.
-- Open PRs from a fresh branch off the upstream base that omits artifact + AGENTS commits.
+- Open PRs from a fresh branch off the upstream base that omits the artifact commits.
 - Upstream-facing design docs go in the host repo's house style/location, separate from these artifacts.
