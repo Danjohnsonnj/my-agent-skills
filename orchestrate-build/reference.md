@@ -80,7 +80,7 @@ Ground truth is an orchestrator-side re-run, not the handback's claim (proposal,
 4. If the verify is **subjective**, route it to the user gate; do not self-certify.
 5. Only after a real pass do you advance the checkpoint and fold state.
 
-## Planning-phase recon subagents
+## Planning-phase research subagents
 
 During planning the orchestrator talks to the user directly and dispatches
 **read-only** subagents for legwork (proposal, "Planning phase"):
@@ -136,7 +136,7 @@ starts a fresh orchestrator from `HANDOFF.md`.
   │   ┌───────────────────────────────────────────────┐
   │   │ Orchestrator A  (cold start)                   │
   │   │  conducts planning interview WITH USER         │
-  │   │  (read-only recon subagents for legwork)       │
+  │   │  (read-only research subagents for legwork)    │
   │   │  user approves phases.md                       │
   │   └───────────────────────┬───────────────────────┘
   │                           │ git checkpoint; overwrite handoff.md (chunk 01)
@@ -211,4 +211,4 @@ durable record lives in `HANDOFF.md` and `progress-log.md`. Commit per the activ
   -> the handback schema.
 - `plan-build` stays the human-driveable WRITE side; this skill is the opt-in DRIVE
   side. It adds only the bus, dispatch loop, re-verify, checkpointing, and escape
-  hatches - it changes nothing in `plan-build`.
+  hatches - it adds no behavior to `plan-build`.

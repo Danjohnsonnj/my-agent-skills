@@ -10,7 +10,7 @@ and hand back.
 
 **Required reading (load only these):**
 
-- AGENTS.md -> docs/\_handoff/HANDOFF.md
+- `AGENTS.md` -> `docs/_handoff/HANDOFF.md`
 - {{LEAF_OR_CODE_PATH}} - {{WHY}}
 
 **Deterministic verify (the chunk exit test):** {{COMMAND_OR_CHECK}}
@@ -19,9 +19,9 @@ and hand back.
 emit a `partial` handback with the remaining work.
 
 **Return-early triggers:** blocked / ambiguous / 2nd failure on the same step /
-scope-creep.
+scope-creep (report any of these via the `blocked` status).
 
 **Hard constraints / invariants:** {{INVARIANTS_OR_NONE}}. Do NOT commit.
 
-**Final action:** overwrite docs/\_handoff/\_bus/handback.md from
+**Final action:** overwrite `docs/_handoff/_bus/handback.md` from
 templates/handback.md, then return it.

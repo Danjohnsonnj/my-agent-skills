@@ -14,6 +14,6 @@
 
 **Files changed:** {{PATHS}}
 
-**Blocker / open decision (if blocked):** {{WHAT_NEEDS_A_HUMAN_OR_NONE}}
+**Blocker / open decision (if blocked or failed):** {{WHAT_NEEDS_A_HUMAN_OR_NONE}}
 
 **Proposed next action:** {{SUGGESTED_NEXT_CHUNK_OR_DECISION}}

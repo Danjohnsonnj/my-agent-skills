@@ -1,7 +1,7 @@
 # Proposal: Orchestrated subagents over a handoff/handback bus
 
-Status: draft / accepted-direction. Not yet implemented. Defines a new sibling
-skill, `orchestrate-build`, that depends on `plan-build`. This document is
+Status: accepted / implemented as the `orchestrate-build` skill. Defines a new
+sibling skill, `orchestrate-build`, that depends on `plan-build`. This document is
 self-contained: it states the motivation, the model, every locked decision with
 its rationale, a worked session, and the assumptions still to validate.
 

@@ -26,23 +26,25 @@ This is the DRIVE side; `plan-build` is the WRITE side. This skill reuses `plan-
 ```mermaid
 flowchart TD
     coldStart["Orchestrator cold-start: AGENTS.md -> HANDOFF.md"] --> planning{"Plan approved?"}
-    planning -->|No| interview["Orchestrator runs planning interview WITH USER; read-only recon subagents do legwork"]
+    planning -->|No| interview["Orchestrator runs planning interview WITH USER; read-only research subagents do legwork"]
     interview --> planning
     planning -->|Yes| sizeChunk["Size next chunk from phases.md (coupling override)"]
     sizeChunk --> checkpoint["git checkpoint (WIP branch/stash)"]
     checkpoint --> writeHandoff["Overwrite _bus/handoff.md"]
     writeHandoff --> dispatch["Launch ONE subagent (serialized)"]
     dispatch --> handback["Subagent overwrites _bus/handback.md, returns"]
-    handback --> reverify["Orchestrator RE-RUNS deterministic verify"]
+    handback --> status{"handback status"}
+    status -->|blocked| askUser["Escape hatch: ask user"]
+    status -->|partial| sizeChunk
+    status -->|failed| rollback["Roll back to checkpoint"]
+    status -->|complete| reverify["Orchestrator RE-RUNS deterministic verify"]
     reverify -->|pass| fold["Advance checkpoint; fold into HANDOFF.md + progress-log.md"]
-    reverify -->|fail| rollback["Roll back to checkpoint"]
+    reverify -->|fail| rollback
     rollback --> breaker{"2nd failure?"}
     breaker -->|No| writeHandoff
-    breaker -->|Yes| askUser["Escape hatch: ask user"]
-    fold --> status{"handback status"}
-    status -->|partial| sizeChunk
-    status -->|blocked| askUser
-    status -->|complete| signal{"Handoff signal? (proxy count / phase boundary)"}
+    breaker -->|Yes| askUser
+    askUser -->|user decides| sizeChunk
+    fold --> signal{"Handoff signal? (proxy count / phase boundary)"}
     signal -->|No| sizeChunk
     signal -->|Yes| handoff["Refresh HANDOFF.md; user starts fresh orchestrator"]
 ```
@@ -54,9 +56,9 @@ Per cycle, the orchestrator:
 3. **Overwrite `docs/_handoff/_bus/handoff.md`** from `templates/handoff.md` for this one chunk.
 4. **Launch exactly ONE subagent** with `templates/dispatch-prompt.md` (serialized).
 5. **Receive the handback** (`docs/_handoff/_bus/handback.md`, overwritten by the subagent).
-6. **Re-verify** independently (see Verification).
-7. On pass: advance the checkpoint, fold durable state into `HANDOFF.md` + append `progress-log.md`. On fail: roll back to the checkpoint, then retry or trip the circuit-breaker.
-8. **Act on handback status**, then check the handoff signal before the next chunk.
+6. **Branch on the handback status** (independent of the re-verify result): `blocked` -> user gate (escape hatch 1); `partial` -> size and dispatch a continuation chunk, no rollback; `failed` -> roll back to the checkpoint, then retry or trip the circuit-breaker; `complete` -> re-verify.
+7. **Re-verify a `complete` handback** independently (see Verification). On pass: advance the checkpoint, fold durable state into `HANDOFF.md` + append `progress-log.md`. On fail: roll back to the checkpoint, then retry or trip the circuit-breaker.
+8. **Check the handoff signal** before sizing the next chunk.
 
 ## The bus
 
@@ -108,7 +110,7 @@ If no approved plan exists, plan first (planning is interactive, so it stays use
 
 ## Escape hatches
 
-1. **User-in-the-loop gate.** On a `blocked` handback, surface the decision to the user rather than guessing.
+1. **User-in-the-loop gate.** On a `blocked` handback, surface the decision to the user rather than guessing. The ambiguous and scope-creep return-early triggers are reported via the `blocked` status.
 2. **Orchestrator handoff (user-initiated).** On a deterministic proxy signal (chunks-completed count / phase boundary) plus the user watching a real usage meter, refresh `HANDOFF.md` and let the user start a fresh orchestrator. Self-assessed "context feels large" is a soft warning only, never the trigger.
 3. **Failure circuit-breaker.** After two failed attempts on the same chunk, stop and ask the user.
 4. **Runaway/loop cap.** Limit auto-dispatched chunks before a mandatory check-in.
