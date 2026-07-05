@@ -51,9 +51,11 @@ pointer). It pairs with the external READ-side skills `resume-work` /
 
 **What:** a two-phase plan review. It triages feedback against quality gates
 (Accuracy, Completeness, Concision, Precision, Clarity), applies only what you
-approve, then re-reviews. It ships `scripts/check-refs.py` to verify every cited
-path/line in a plan, and an **execution-reliability lens** that flags deterministic
-procedure worth turning into a script (recommend-only).
+approve, then re-reviews. Step 6 includes a **Resumability** sub-lens under Clarity
+(not a sixth gate) so approved plans are cold-start executable (with external doc
+pointers where appropriate). It ships `scripts/check-refs.py` to verify every cited
+path/line in a plan, and an **execution-reliability lens** that flags deterministic procedure worth
+turning into a script (recommend-only).
 
 **Why / when:** run it on a `plan-build` plan (or any plan) before building, to
 catch broken references, scope creep, and unclear steps while they are still cheap
