@@ -10,7 +10,7 @@ and hand back.
 
 **Required reading (load only these):**
 
-- `docs/_handoff/HANDOFF.md`
+- `docs/_plan/HANDOFF.md`
 - {{LEAF_OR_CODE_PATH}} - {{WHY}}
 
 **Deterministic verify (the chunk exit test):** {{COMMAND_OR_CHECK}}
@@ -23,5 +23,5 @@ scope-creep (report any of these via the `blocked` status).
 
 **Hard constraints / invariants:** {{INVARIANTS_OR_NONE}}. Do NOT commit.
 
-**Final action:** overwrite `docs/_handoff/_bus/handback.md` from
+**Final action:** overwrite `docs/_plan/_bus/handback.md` from
 templates/handback.md, then return it.

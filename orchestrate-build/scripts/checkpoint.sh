@@ -17,7 +17,7 @@ echo "CHECKPOINT: git work tree confirmed"
 # Intent: where the checkpoint pointer lives, written AFTER the stash below.
 # (git stash --include-untracked cleans untracked dirs, so creating the bus dir
 # beforehand would just be deleted again.)
-bus_dir="docs/_handoff/_bus"
+bus_dir="docs/_plan/_bus"
 checkpoint_file="$bus_dir/.checkpoint"
 
 label="orchestrate-checkpoint $(date -u +%Y-%m-%dT%H:%M:%SZ)"

@@ -15,18 +15,18 @@ Produces and maintains the durable artifacts that let any cold-start agent resum
 
 ## Core model (progressive disclosure)
 
-A thin tree under docs/\_handoff/: HANDOFF.md (always-read entry) plus on-demand leaves process.md, product-brief.md, tech-brief.md, phases.md, progress-log.md, lessons.md. HANDOFF.md is the explicit entry point: a cold-start agent is pointed at it directly (this skill does not write an AGENTS.md pointer). On cold start, load only HANDOFF.md plus the leaves named in its per-phase "Required reading".
+A thin tree under docs/\_plan/: HANDOFF.md (always-read entry) plus on-demand leaves process.md, product-brief.md, tech-brief.md, phases.md, progress-log.md, lessons.md. HANDOFF.md is the explicit entry point: a cold-start agent is pointed at it directly (this skill does not write an AGENTS.md pointer). On cold start, load only HANDOFF.md plus the leaves named in its per-phase "Required reading".
 
 ## Init workflow
 
 1. Pick adoption mode: own-project (default; commit artifacts) or contributor (keep out of upstream PR). See reference.md.
-2. Create docs/\_handoff/ from templates/ (HANDOFF, process, product-brief, tech-brief, phases, progress-log, lessons). Fill the {{placeholders}}; delete guidance comments.
+2. Create docs/\_plan/ from templates/ (HANDOFF, process, product-brief, tech-brief, phases, progress-log, lessons). Fill the {{placeholders}}; delete guidance comments.
 3. Set process.md "Adoption mode" and HANDOFF.md current phase + next action.
 4. Do not commit unless the user asks.
 
 ## Cold-start protocol
 
-Start from docs/\_handoff/HANDOFF.md — the explicit entry point an agent is pointed at directly. Read it, then only the leaves under "Required reading (this phase)" — which includes lessons.md, the accreted toolkit to reuse before re-deriving. Read process.md before committing.
+Start from docs/\_plan/HANDOFF.md — the explicit entry point an agent is pointed at directly. Read it, then only the leaves under "Required reading (this phase)" — which includes lessons.md, the accreted toolkit to reuse before re-deriving. Read process.md before committing.
 
 ## Session-handoff ritual (wrap-up)
 

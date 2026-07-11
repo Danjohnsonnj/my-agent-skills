@@ -8,7 +8,7 @@ its rationale, a worked session, and the assumptions still to validate.
 ## Summary
 
 `plan-build` already lets a cold-start agent resume long-running work by writing
-a durable handoff tree (`AGENTS.md` pointer + `docs/_handoff/*`). Today the
+a durable handoff tree (`AGENTS.md` pointer + `docs/_plan/*`). Today the
 *user* drives the loop: decide when to wrap up, start a fresh session, feed it
 the handoff. This proposal automates that loop with a long-lived **orchestrator**
 session that breaks work into discrete **chunks** and dispatches each to a
@@ -62,7 +62,7 @@ decisions below follow from those two facts.
 | 2 | Bounding a subagent | **Pre-sized scope + a good-enough self-budget** (countable tool-call / attempt count) that, when exceeded or not converging, makes the subagent STOP and emit a **partial/continuation handback**. Best-effort; refine the budget from observation. |
 | 3 | Verification trust | Orchestrator **independently re-runs** any deterministic verify (ground truth). Evidence-in-handback is the fallback when a verify isn't runnable; genuinely subjective verifies go to the **user gate**. |
 | 4 | Bus persistence | **Durable, not ephemeral** — the bus is persisted on disk for the life of the plan+build, then deleted. |
-| 5 | Bus shape | **Role-split pair, overwritten in place:** `docs/_handoff/_bus/handoff.md` (orchestrator-only writer) + `handback.md` (subagent-only writer). History lives in `progress-log.md`. |
+| 5 | Bus shape | **Role-split pair, overwritten in place:** `docs/_plan/_bus/handoff.md` (orchestrator-only writer) + `handback.md` (subagent-only writer). History lives in `progress-log.md`. |
 | 6 | Chunk granularity | **Orchestrator-sized** within bounds (cluster tiny steps, split big ones, refine from the partial-handback rate), anchored on *"smallest unit with one deterministic verify, worth one onboarding."* **Coupling override:** tightly coupled work (technical or conceptual) is kept whole in a single chunk. |
 | 7 | Planning phase | **Hybrid with a strong user-in-the-loop.** The orchestrator conducts the (grill-me-style) planning interview *itself*, because only it can talk to the user; read-only research subagents do discovery legwork; decisions stay in the orchestrator. |
 | 8 | Validation approach | **Build it; the user observes informally.** No formal metrics or kill criterion for now. |
@@ -87,14 +87,14 @@ Conceptually a two-direction message bus with a **single writer per direction**;
 serialization (below) means there is never contention. Both files are overwritten
 each cycle and live for the duration of the plan+build, then deleted.
 
-- **`docs/_handoff/_bus/handoff.md`** (orchestrator → subagent; orchestrator is
+- **`docs/_plan/_bus/handoff.md`** (orchestrator → subagent; orchestrator is
   the only writer). The dispatch brief for one chunk:
   - scope ("do exactly X; if you find yourself doing Y, stop and return"),
-  - required reading (which `docs/_handoff/` leaves + which code to load),
+  - required reading (which `docs/_plan/` leaves + which code to load),
   - the concrete deterministic verify for this chunk,
   - the effort budget and return-early triggers,
   - hard constraints / invariants.
-- **`docs/_handoff/_bus/handback.md`** (subagent → orchestrator; subagent is the
+- **`docs/_plan/_bus/handback.md`** (subagent → orchestrator; subagent is the
   only writer). The structured return:
   - status: `complete` | `partial` | `blocked` | `failed`,
   - what was done; for `partial`, the remaining work for a continuation chunk,
@@ -336,7 +336,7 @@ subagent pointed at it):
 > Exit when `[verify]` passes. Budget: `[N]` — if exceeded or not converging,
 > STOP and write a `partial` handback with remaining work. On block / ambiguity /
 > 2nd failure / scope-creep, STOP and write a `blocked` handback. Do not commit.
-> Final action: overwrite `docs/_handoff/_bus/handback.md`, then return it.
+> Final action: overwrite `docs/_plan/_bus/handback.md`, then return it.
 
 ## Validation approach
 

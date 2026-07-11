@@ -75,7 +75,7 @@ Feedback supplied: steps 1–8. No feedback: 1 → 6.
    1. Run `scripts/check-refs.py <plan>` to verify cited paths/lines; it is the single source of truth for link refs and feeds gate 1 (Accuracy). Only if you cannot execute it, read it as a spec and spot-check refs by hand (read/verify tier: execute-or-infer). Hand-check inline/prose path refs it does not parse; resolve PR/branch refs via VCS tools.
    2. Falsify negative claims; flag `Unverified` when expensive.
    3. Apply the Execution-reliability lens (above).
-   4. Apply **Resumability** sub-lens (`reference.md` § Cold-start implementable). If plan references `docs/_handoff/` or `HANDOFF.md`, also run plan-build integration checks (reference.md).
+   4. Apply **Resumability** sub-lens (`reference.md` § Cold-start implementable). If plan references `docs/_plan/` or `HANDOFF.md`, also run plan-build integration checks (reference.md).
    5. Propose missing recommended sections as localized edits, not wholesale restructure. Ambiguity Protocol on findings.
 7. **Plan-review report → stop** — template in [reference.md](reference.md). Ask: apply changes? (yes / no / subset).
 8. **Apply + confirm** — path updated; one-line per change; deferred/skipped items + why.

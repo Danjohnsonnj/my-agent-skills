@@ -15,7 +15,7 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   exit 1
 fi
 
-checkpoint_file="docs/_handoff/_bus/.checkpoint"
+checkpoint_file="docs/_plan/_bus/.checkpoint"
 
 # Intent: refuse to guess a restore point; a checkpoint must already exist.
 if [ ! -f "$checkpoint_file" ]; then

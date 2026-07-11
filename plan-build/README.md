@@ -1,7 +1,7 @@
 # plan-build
 
 An installable Cursor/agent skill that creates and maintains a durable,
-cold-start-resumable handoff brief tree (`docs/_handoff/*`) for
+cold-start-resumable handoff brief tree (`docs/_plan/*`) for
 multi-session discovery and delivery in any project. It is the WRITE/maintain side of
 session continuity and pairs with `resume-work` / `research-repo`, which read what it
 writes.

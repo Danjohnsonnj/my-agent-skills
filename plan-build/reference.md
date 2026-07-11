@@ -1,19 +1,19 @@
 # Plan-build - reference
 
 Detailed methodology behind `SKILL.md`. Read on demand. The skill writes a durable
-handoff brief tree (`docs/_handoff/*`) so any cold-start agent can resume
+handoff brief tree (`docs/_plan/*`) so any cold-start agent can resume
 long-running, multi-session work. This is the WRITE side; `resume-work`
 and `research-repo` are the READ side.
 
 ## Adoption modes
 
-Pick a mode at init and record it in `docs/_handoff/process.md` under **Adoption mode**.
+Pick a mode at init and record it in `docs/_plan/process.md` under **Adoption mode**.
 
 ### own-project (default)
 
 You own the repo, so the handoff artifacts are first-class.
 
-- Track and commit `docs/_handoff/*` normally, alongside code.
+- Track and commit `docs/_plan/*` normally, alongside code.
 - No special branch handling.
 
 ### contributor (someone else's repo)
@@ -29,7 +29,7 @@ the PR.
 - Open PRs from a fresh branch off the upstream base, cherry-picking only the code
   commits; the branch must omit the artifact commits.
 - Upstream-facing design docs go in the host repo's house style and location, separate
-  from `docs/_handoff/`.
+  from `docs/_plan/`.
 
 ## Cold-start protocol (expanded)
 
@@ -52,7 +52,7 @@ This skill does not write an `AGENTS.md` pointer; entry is explicit.
 
 ## Configuration knobs
 
-- **Folder name:** default `docs/_handoff/`. Override allowed; if you move it, update
+- **Folder name:** default `docs/_plan/`. Override allowed; if you move it, update
   the paths in `HANDOFF.md` accordingly.
 - **Hard invariants:** the `HANDOFF.md` invariants line is optional; delete it if the
   effort has no tripwire rules.
@@ -72,7 +72,7 @@ This skill does not write an `AGENTS.md` pointer; entry is explicit.
 
 A multi-session macOS/Cursor effort ("token-goat") adopted this tree.
 
-**Init.** Contributor mode (upstream repo). Created `docs/_handoff/` from the templates,
+**Init.** Contributor mode (upstream repo). Created `docs/_plan/` from the templates,
 filled placeholders (PROJECT, goal, phase 1), and set `process.md` adoption mode to
 `contributor`. Nothing was committed until asked; code and artifacts were committed in
 separate lanes.

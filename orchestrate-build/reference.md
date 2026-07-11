@@ -200,7 +200,7 @@ starts a fresh orchestrator from `HANDOFF.md`.
 
 ## End of build
 
-When the plan is delivered, delete the bus directory `docs/_handoff/_bus/`; the
+When the plan is delivered, delete the bus directory `docs/_plan/_bus/`; the
 durable record lives in `HANDOFF.md` and `progress-log.md`. Commit per the active
 `plan-build` adoption mode, only when the user asks.
 
