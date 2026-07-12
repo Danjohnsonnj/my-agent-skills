@@ -4,7 +4,7 @@ Durable methodology. Read once per session before committing. Reached from HANDO
 
 **Adoption mode:** own-project
 
-**Plan root:** `docs/plans/skills-explainer-site/` (named effort folder; suite default migrating to `docs/plans/<effort-slug>/`)
+**Plan root:** `docs/plans/skills-explainer-site/`
 
 ## Cold-start protocol
 
@@ -34,4 +34,4 @@ Durable methodology. Read once per session before committing. Reached from HANDO
 
 ## Dogfood note
 
-start-interview → plan-build (this tree) → review-plan → optional orchestrate-build. Control-plane: Phase 3 rename done (`grill-me` → `start-interview`); Phase 4 named `docs/plans/<slug>/` next.
+start-interview → plan-build (this tree) → review-plan → optional orchestrate-build. Control-plane: Phase 3 rename ✅; Phase 4 named plans ✅ (`docs/plans/<slug>/`, bus under plan root).

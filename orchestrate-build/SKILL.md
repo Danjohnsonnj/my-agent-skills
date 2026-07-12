@@ -17,7 +17,7 @@ This is the DRIVE side; `plan-build` is the WRITE side. This skill reuses `plan-
 
 ## Prerequisites
 
-- A `plan-build` tree exists under `docs/_plan/` (HANDOFF.md, phases.md with per-phase `Verify:` steps) and you have been pointed at `HANDOFF.md` explicitly. If not, run the planning phase below first.
+- A `plan-build` tree exists under `docs/plans/<effort-slug>/` (HANDOFF.md, phases.md with per-phase `Verify:` steps) and you have been pointed at `HANDOFF.md` explicitly. If not, run the planning phase below first.
 - The harness supports both **write-capable** subagents (build/test chunks) and **read-only** subagents (discovery legwork).
 - The orchestrator has the same workspace + tool access as subagents, so it can re-run verifies and own git.
 
@@ -52,20 +52,20 @@ flowchart TD
 Per cycle, the orchestrator:
 
 1. **Size the chunk** from `phases.md` (see Chunking).
-2. **Checkpoint git** so a bad chunk is recoverable - run `scripts/checkpoint.sh` (see Workspace & git; mutating, execute-or-STOP).
-3. **Overwrite `docs/_plan/_bus/handoff.md`** from `templates/handoff.md` for this one chunk.
-4. **Launch exactly ONE subagent** with `templates/dispatch-prompt.md` (serialized).
-5. **Receive the handback** (`docs/_plan/_bus/handback.md`, overwritten by the subagent).
-6. **Branch on the handback status** (independent of the re-verify result): `blocked` -> user gate (escape hatch 1); `partial` -> size and dispatch a continuation chunk, no rollback; `failed` -> roll back to the checkpoint (`scripts/rollback.sh`), then retry or trip the circuit-breaker; `complete` -> re-verify.
-7. **Re-verify a `complete` handback** independently with `scripts/run-verify.sh` (see Verification). On pass: advance the checkpoint, fold durable state into `HANDOFF.md` + append `progress-log.md`. On fail: roll back to the checkpoint (`scripts/rollback.sh`), then retry or trip the circuit-breaker.
+2. **Checkpoint git** so a bad chunk is recoverable - run `scripts/checkpoint.sh <plan-root>` (or set `PLAN_ROOT`; see Workspace & git; mutating, execute-or-STOP).
+3. **Overwrite `{{PLAN_ROOT}}/_bus/handoff.md`** from `templates/handoff.md` for this one chunk (`{{PLAN_ROOT}}` = the folder containing `HANDOFF.md`, e.g. `docs/plans/skills-explainer-site`).
+4. **Launch exactly ONE subagent** with `templates/dispatch-prompt.md` (serialized; substitute `{{PLAN_ROOT}}`).
+5. **Receive the handback** (`{{PLAN_ROOT}}/_bus/handback.md`, overwritten by the subagent).
+6. **Branch on the handback status** (independent of the re-verify result): `blocked` -> user gate (escape hatch 1); `partial` -> size and dispatch a continuation chunk, no rollback; `failed` -> roll back to the checkpoint (`scripts/rollback.sh <plan-root>`), then retry or trip the circuit-breaker; `complete` -> re-verify.
+7. **Re-verify a `complete` handback** independently with `scripts/run-verify.sh` (see Verification). On pass: advance the checkpoint, fold durable state into `HANDOFF.md` + append `progress-log.md`. On fail: roll back to the checkpoint (`scripts/rollback.sh <plan-root>`), then retry or trip the circuit-breaker.
 8. **Check the handoff signal** before sizing the next chunk.
 
 ## The bus
 
-Two role-owned files under `docs/_plan/_bus/`, each overwritten in place every cycle, durable for the life of the plan+build, then **deleted at the end**. Serialization (below) means there is never write contention.
+Two role-owned files under `{{PLAN_ROOT}}/_bus/` (same plan root as `HANDOFF.md`), each overwritten in place every cycle, durable for the life of the plan+build, then **deleted at the end**. Serialization (below) means there is never write contention.
 
-- `docs/_plan/_bus/handoff.md` - orchestrator -> subagent. The **only writer is the orchestrator**. The dispatch brief for one chunk. Template: `templates/handoff.md`.
-- `docs/_plan/_bus/handback.md` - subagent -> orchestrator. The **only writer is the subagent**. The structured return. Template: `templates/handback.md`.
+- `{{PLAN_ROOT}}/_bus/handoff.md` - orchestrator -> subagent. The **only writer is the orchestrator**. The dispatch brief for one chunk. Template: `templates/handoff.md`.
+- `{{PLAN_ROOT}}/_bus/handback.md` - subagent -> orchestrator. The **only writer is the subagent**. The structured return. Template: `templates/handback.md`.
 
 Canonical project state stays in `plan-build`'s `HANDOFF.md` (current truth, overwritten) and `progress-log.md` (append-only history). Overwriting the bus loses nothing durable because `progress-log.md` carries the audit trail.
 
@@ -89,8 +89,8 @@ Subagent file edits persist in the shared tree, so a failed/`partial` chunk can 
 
 These two steps are **mutating**: run the script (execute-or-STOP). If you cannot execute it, STOP and surface a blocker to the user - never free-hand a destructive git operation from this prose.
 
-- The orchestrator records a **known-good checkpoint** before each dispatch via a WIP mechanism it owns - never real commits unless the user asks. Run `scripts/checkpoint.sh`; it is the single source of truth and snapshots the tracked + untracked tree into a stash entry without moving any branch, recording the checkpoint SHA to `docs/_plan/_bus/.checkpoint`.
-- On a failed re-verify, **roll back** to the checkpoint before retry/re-dispatch by running `scripts/rollback.sh`, which restores the working tree to that recorded checkpoint. Successful chunks advance the checkpoint (re-run `checkpoint.sh`). **Green-on-exit** is the target for completed chunks; `partial` may leave mid-edit state.
+- The orchestrator records a **known-good checkpoint** before each dispatch via a WIP mechanism it owns - never real commits unless the user asks. Run `scripts/checkpoint.sh <plan-root>` (or `PLAN_ROOT=<plan-root>`); it is the single source of truth and snapshots the tracked + untracked tree into a stash entry without moving any branch, recording the checkpoint SHA to `{{PLAN_ROOT}}/_bus/.checkpoint`.
+- On a failed re-verify, **roll back** to the checkpoint before retry/re-dispatch by running `scripts/rollback.sh <plan-root>`, which restores the working tree to that recorded checkpoint. Successful chunks advance the checkpoint (re-run `checkpoint.sh <plan-root>`). **Green-on-exit** is the target for completed chunks; `partial` may leave mid-edit state.
 - **Subagents never commit; the orchestrator owns git.**
 
 ## Chunking

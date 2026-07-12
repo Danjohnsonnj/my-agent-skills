@@ -1,7 +1,7 @@
 # plan-build
 
 An installable Cursor/agent skill that creates and maintains a durable,
-cold-start-resumable handoff brief tree (`docs/_plan/*`) for
+cold-start-resumable handoff brief tree (`docs/plans/<effort-slug>/*`) for
 multi-session discovery and delivery in any project. It is the WRITE/maintain side of
 session continuity and pairs with `resume-work` / `research-repo`, which read what it
 writes.
@@ -22,9 +22,10 @@ Cursor's built-in skills.
 ## Use
 
 Invoke by asking to "set up a handoff", "stand up a project brief", or "wrap up the
-session". The skill scaffolds the brief tree from `templates/` and maintains the
-artifacts on each wrap-up. See `SKILL.md` for the workflow and `reference.md` for
-adoption modes and a worked example.
+session". The skill scaffolds the brief tree from `templates/` under
+`docs/plans/<effort-slug>/` and maintains the artifacts on each wrap-up. See
+`SKILL.md` for the workflow and `reference.md` for adoption modes and a worked
+example.
 
 ## Layout
 

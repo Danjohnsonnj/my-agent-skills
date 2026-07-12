@@ -4,6 +4,8 @@ Durable methodology. Read once per session before committing. Reached from HANDO
 
 **Adoption mode:** {{own-project | contributor}}
 
+**Plan root:** `docs/plans/{{EFFORT_SLUG}}/`
+
 ## Cold-start protocol
 
 1. Start from HANDOFF.md — the explicit entry point you are pointed at directly; read it always (phase, next action, required reading).
@@ -35,3 +37,7 @@ Durable methodology. Read once per session before committing. Reached from HANDO
 - Keep code and artifacts in SEPARATE commits.
 - Open PRs from a fresh branch off the upstream base that omits the artifact commits.
 - Upstream-facing design docs go in the host repo's house style/location, separate from these artifacts.
+
+## Legacy path
+
+Older single-effort trees may live at `docs/_plan/`. New efforts use `docs/plans/<effort-slug>/` so multiple plans can coexist.

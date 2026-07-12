@@ -88,7 +88,7 @@ with a relative path (`scripts/<name>`).
 The suite improves in two tiers, and only the first is automatic.
 
 - **Type-1 (automatic, per project):** `plan-build` accretes a `lessons.md` leaf
-  under each project's `docs/_plan/` - reusable gotchas, script/verify
+  under each effort's `docs/plans/<effort-slug>/` (legacy: `docs/_plan/`) - reusable gotchas, script/verify
   outcomes, and crystallization candidates - and carries it in cold-start
   Required reading. This is local learning; it changes no skill.
 - **Type-2 (manual, the harvest ritual):** periodically review the accumulated

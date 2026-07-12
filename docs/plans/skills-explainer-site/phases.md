@@ -1,7 +1,7 @@
 # Phases
 
-**Execution order (do not skip ahead to Design/Build):**  
-4 → 5 → 6 → 7. Phases 1–3 are done (discovery + locks + start-interview rename).
+**Execution order:**  
+6 → 7. Phases 1–5 are done.
 
 ## Phase 1 - Discovery ✅
 
@@ -18,26 +18,17 @@
 - Folder `start-interview/`; SKILL name + invoke; README + cross-refs; local symlinks.
 - Verify: `rg` clean except history/migration notes; lifecycle order uses `start-interview`; **UAT passed** (`/start-interview`).
 
-## Phase 4 - Suite convention update (named plans) (current)
+## Phase 4 - Suite convention update (named plans) ✅
 
-**Surfaces:**
+- Default plan path `docs/plans/<effort-slug>/`; bus at `<plan-root>/_bus/`; checkpoint/rollback take plan root; README/SCRIPTS + review-plan examples updated; legacy `docs/_plan/` notes only.
+- Verify: skill-facing defaults cite named plans; this effort’s path is the living example.
 
-1. `plan-build` — SKILL, reference, templates, README → default `docs/plans/<effort-slug>/`.
-2. `orchestrate-build` — SKILL, reference, README, templates, `checkpoint.sh` / `rollback.sh` → bus under plan root (`<plan>/_bus/`), not hard-coded `docs/_plan/_bus/`.
-3. `review-plan` — refs/examples for plan paths.
-4. Root README + SCRIPTS.md — `docs/_plan/` → named plans (+ short legacy migration note).
+## Phase 5 - Design lock ✅
 
-**Verify:**
+- [`design-lock.md`](design-lock.md) approved 2026-07-11 — tokens, skim-strip + skill-block layout, motion, illustration prompt pack; summary in tech-brief.
+- Verify: user approved written lock.
 
-- Stale `docs/_plan` defaults gone from skill-facing docs/scripts (legacy notes only).
-- Examples cite `docs/plans/<slug>/` pattern; this effort’s path is the living example.
-
-## Phase 5 - Design lock
-
-- Dark CSS tokens (palette, type, spacing); skim-strip + skill-block layout; motion notes; **illustration prompt pack** (assets optional for v1).
-- Verify: user approves written lock (± mock); tech-brief records tokens/paths.
-
-## Phase 6 - Build & deploy
+## Phase 6 - Build & deploy (current)
 
 - `docs/index.html` + `docs/assets/{css,js,img}/` per content-outline.md + decisions.md.
 - GH Pages from `/docs`; install snippet === README; copy button; footer → `plans/skills-explainer-site/HANDOFF.md`.

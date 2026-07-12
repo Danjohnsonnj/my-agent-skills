@@ -96,7 +96,7 @@ Operational meaning of the intro promise _"cold-start implementable"_. Apply as 
 | Per step/chunk | Action + deterministic verify (command, script, test, observable state). _Verify gaps → Completeness only (Finding placement)._ |
 | Out of scope | Explicit, not implied |
 | One path | No A/B forks (Ambiguity Protocol + Clarity) |
-| Link form | Paths the executor must load → markdown links (machine-checked by `check-refs.py`). Exception: under HANDOFF **Required reading (this phase)**, plain `docs/_plan/*.md` paths are OK (plan-build convention). Elsewhere, use markdown links. |
+| Link form | Paths the executor must load → markdown links (machine-checked by `check-refs.py`). Exception: under HANDOFF **Required reading (this phase)**, plain `docs/plans/<effort-slug>/*.md` paths are OK (plan-build convention; legacy `docs/_plan/*.md` also OK). Elsewhere, use markdown links. |
 
 ## Finding placement
 
@@ -114,7 +114,7 @@ Optional — propose localized additions when a check fails; not forced schema:
 
 ```markdown
 ## Required reading
-- [tech-brief](docs/_plan/tech-brief.md) — why load it
+- [tech-brief](docs/plans/<effort-slug>/tech-brief.md) — why load it
 
 ## Prerequisites
 - Branch: `feature/foo`; env: N/A
@@ -125,7 +125,7 @@ Optional — propose localized additions when a check fails; not forced schema:
 
 ### plan-build integration
 
-Run only when the plan references `docs/_plan/` or `HANDOFF.md`:
+Run only when the plan references `docs/plans/`, `docs/_plan/` (legacy), or `HANDOFF.md`:
 
 - HANDOFF names current phase + single next action
 - "Required reading" matches what steps actually need; agent loads only those leaves, not the whole tree

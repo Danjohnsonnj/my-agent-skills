@@ -9,8 +9,8 @@
 
 **Required reading (this phase):**
 
-- docs/\_plan/lessons.md - reusable toolkit (gotchas, script/verify outcomes); reuse before re-deriving
-- docs/\_plan/{{LEAF}}.md - {{WHY}}
+- docs/plans/{{EFFORT_SLUG}}/lessons.md - reusable toolkit (gotchas, script/verify outcomes); reuse before re-deriving
+- docs/plans/{{EFFORT_SLUG}}/{{LEAF}}.md - {{WHY}}
 
 **Index (load on demand):**
 

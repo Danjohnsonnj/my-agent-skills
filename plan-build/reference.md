@@ -1,19 +1,20 @@
 # Plan-build - reference
 
 Detailed methodology behind `SKILL.md`. Read on demand. The skill writes a durable
-handoff brief tree (`docs/_plan/*`) so any cold-start agent can resume
+handoff brief tree (`docs/plans/<effort-slug>/*`) so any cold-start agent can resume
 long-running, multi-session work. This is the WRITE side; `resume-work`
 and `research-repo` are the READ side.
 
 ## Adoption modes
 
-Pick a mode at init and record it in `docs/_plan/process.md` under **Adoption mode**.
+Pick a mode at init and record it in `docs/plans/<effort-slug>/process.md` under
+**Adoption mode**.
 
 ### own-project (default)
 
 You own the repo, so the handoff artifacts are first-class.
 
-- Track and commit `docs/_plan/*` normally, alongside code.
+- Track and commit `docs/plans/<effort-slug>/*` normally, alongside code.
 - No special branch handling.
 
 ### contributor (someone else's repo)
@@ -29,7 +30,7 @@ the PR.
 - Open PRs from a fresh branch off the upstream base, cherry-picking only the code
   commits; the branch must omit the artifact commits.
 - Upstream-facing design docs go in the host repo's house style and location, separate
-  from `docs/_plan/`.
+  from `docs/plans/<effort-slug>/`.
 
 ## Cold-start protocol (expanded)
 
@@ -52,8 +53,10 @@ This skill does not write an `AGENTS.md` pointer; entry is explicit.
 
 ## Configuration knobs
 
-- **Folder name:** default `docs/_plan/`. Override allowed; if you move it, update
-  the paths in `HANDOFF.md` accordingly.
+- **Folder name:** default `docs/plans/<effort-slug>/` (kebab-case slug per effort).
+  Override allowed; if you move it, update the paths in `HANDOFF.md` and
+  `process.md` accordingly. Legacy single-effort path `docs/_plan/` may still exist
+  in older projects — do not use it for new work.
 - **Hard invariants:** the `HANDOFF.md` invariants line is optional; delete it if the
   effort has no tripwire rules.
 - **Extra leaves:** add project-specific leaves (e.g. `data-model.md`); list them in
@@ -66,16 +69,17 @@ This skill does not write an `AGENTS.md` pointer; entry is explicit.
 - Do not duplicate their read logic here; this skill only writes the surfaces they read.
 - `orchestrate-build` is the opt-in DRIVE side: it consumes these same surfaces
   (`HANDOFF.md`, `phases.md` verifies) to run a serialized subagent dispatch loop;
-  it adds no behavior here and changes nothing in this skill.
+  the bus lives under the same plan root (`<plan-root>/_bus/`). It adds no behavior
+  here and changes nothing in this skill.
 
 ## Worked example (generic)
 
 A multi-session macOS/Cursor effort ("token-goat") adopted this tree.
 
-**Init.** Contributor mode (upstream repo). Created `docs/_plan/` from the templates,
-filled placeholders (PROJECT, goal, phase 1), and set `process.md` adoption mode to
-`contributor`. Nothing was committed until asked; code and artifacts were committed in
-separate lanes.
+**Init.** Contributor mode (upstream repo). Created `docs/plans/token-goat/` from the
+templates, filled placeholders (PROJECT, goal, phase 1), and set `process.md`
+adoption mode to `contributor` and **Plan root** to that path. Nothing was committed
+until asked; code and artifacts were committed in separate lanes.
 
 **Discovery phase entry.** `HANDOFF.md` current phase = "Discovery - in progress", next
 action = "confirm the build config in tech-brief.md", required reading =

@@ -14,10 +14,17 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 fi
 echo "CHECKPOINT: git work tree confirmed"
 
-# Intent: where the checkpoint pointer lives, written AFTER the stash below.
+# Intent: plan root (arg 1 or PLAN_ROOT) owns the bus; checkpoint pointer lives
+# under <plan-root>/_bus/, written AFTER the stash below.
 # (git stash --include-untracked cleans untracked dirs, so creating the bus dir
 # beforehand would just be deleted again.)
-bus_dir="docs/_plan/_bus"
+plan_root="${1:-${PLAN_ROOT:-}}"
+plan_root="${plan_root%/}"
+if [ -z "$plan_root" ]; then
+  echo "CHECKPOINT FAIL: pass plan root as arg 1 or set PLAN_ROOT (e.g. docs/plans/my-effort)" >&2
+  exit 1
+fi
+bus_dir="$plan_root/_bus"
 checkpoint_file="$bus_dir/.checkpoint"
 
 label="orchestrate-checkpoint $(date -u +%Y-%m-%dT%H:%M:%SZ)"

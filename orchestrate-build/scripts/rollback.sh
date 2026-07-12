@@ -15,7 +15,13 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   exit 1
 fi
 
-checkpoint_file="docs/_plan/_bus/.checkpoint"
+plan_root="${1:-${PLAN_ROOT:-}}"
+plan_root="${plan_root%/}"
+if [ -z "$plan_root" ]; then
+  echo "ROLLBACK FAIL: pass plan root as arg 1 or set PLAN_ROOT (e.g. docs/plans/my-effort)" >&2
+  exit 1
+fi
+checkpoint_file="$plan_root/_bus/.checkpoint"
 
 # Intent: refuse to guess a restore point; a checkpoint must already exist.
 if [ ! -f "$checkpoint_file" ]; then

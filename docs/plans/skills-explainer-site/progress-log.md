@@ -41,3 +41,17 @@
 - Verified: `rg -i 'grill-me|grill me'` limited to history/migration notes; documented invoke `/start-interview`; lifecycle order start-interview → plan-build → review-plan → orchestrate-build. **UAT:** user confirmed `/start-interview` resolves in Cursor.
 - Learned: Symlinks in both agents and cursor skills dirs needed remove+recreate after folder rename.
 - Overwrote: start-interview/SKILL.md, README, orchestrate-build/SKILL.md, plan-build/proposals/orchestrated-subagents.md, HANDOFF, phases, tech-brief, product-brief, process, decisions header
+
+## 2026-07-11 - Session 3: Phase 4 named-plan convention
+
+- Happened: Default plan path `docs/plans/<effort-slug>/` across plan-build (SKILL/reference/templates/README), orchestrate-build (SKILL/README/reference/templates + checkpoint/rollback take plan root), review-plan examples, root README + SCRIPTS. Bus is `<plan-root>/_bus/`. Legacy `docs/_plan/` kept as migration notes only. Proposal left historical.
+- Verified: skill-facing docs/scripts default to named plans; hard-coded `docs/_plan/_bus` removed from scripts; this effort path is the living example.
+- Learned: Scripts need explicit plan root (arg or PLAN_ROOT); no silent default to legacy path.
+- Overwrote: plan-build/*, orchestrate-build/*, review-plan/SKILL.md + reference.md, README, SCRIPTS.md, HANDOFF, phases, tech-brief, process
+
+## 2026-07-11 - Session 4: Phase 5 design lock
+
+- Happened: Drafted `design-lock.md` (dark workbench, continuity-rail signature, tokens, layout, motion, illustration prompt pack); recorded summary in tech-brief. User approved (“locked”).
+- Verified: Approval checklist in design-lock.md checked; Phase 5 marked ✅.
+- Learned: none new (followed product-brief + G locks).
+- Overwrote: design-lock.md (new), HANDOFF, phases, tech-brief, progress-log

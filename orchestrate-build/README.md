@@ -3,10 +3,10 @@
 An installable Cursor/agent skill that **drives** a `plan-build` effort: a
 long-lived orchestrator session breaks approved work into chunks and dispatches
 each to a serialized cold-start subagent over a handoff/handback bus
-(`docs/_plan/_bus/*`), independently re-verifying, git-checkpointing, and
-gating on the user via explicit escape hatches. It is the opt-in DRIVE side of
-session continuity and depends on `plan-build`, the WRITE/maintain side, whose
-artifacts it consumes unchanged.
+(`{{PLAN_ROOT}}/_bus/*`, e.g. `docs/plans/<effort-slug>/_bus/`), independently
+re-verifying, git-checkpointing, and gating on the user via explicit escape
+hatches. It is the opt-in DRIVE side of session continuity and depends on
+`plan-build`, the WRITE/maintain side, whose artifacts it consumes unchanged.
 
 ## Install
 
@@ -26,10 +26,11 @@ Cursor's built-in skills.
 Invoke explicitly by asking to "orchestrate the build", "run the dispatch loop",
 or "drive the subagents" against a project that has (or is about to have) a
 `plan-build` tree. The orchestrator sizes each chunk from `phases.md`, writes the
-dispatch brief to `docs/_plan/_bus/handoff.md`, launches one subagent at a
+dispatch brief to `{{PLAN_ROOT}}/_bus/handoff.md`, launches one subagent at a
 time, re-runs each chunk's verify itself, and folds durable state back into
-`HANDOFF.md` / `progress-log.md`. See `SKILL.md` for the loop and `reference.md`
-for chunk sizing, git mechanics, verification, and budget defaults.
+`HANDOFF.md` / `progress-log.md`. Pass the plan root to checkpoint/rollback
+scripts (`scripts/checkpoint.sh <plan-root>`). See `SKILL.md` for the loop and
+`reference.md` for chunk sizing, git mechanics, verification, and budget defaults.
 
 This skill sets `disable-model-invocation: true`, so it only loads when named
 explicitly - orchestration is consequential and should be chosen, not ambient.
@@ -40,7 +41,8 @@ explicitly - orchestration is consequential and should be chosen, not ambient.
 - `reference.md` - operational detail (chunk sizing, git checkpoint/rollback,
   continuation re-dispatch, verification protocol, budget defaults, worked session).
 - `scripts/` - executable single-source-of-truth steps: `checkpoint.sh`,
-  `rollback.sh` (mutating, execute-or-STOP) and `run-verify.sh` (read/verify,
-  execute-or-infer). Authoring conventions live in the repo-root `SCRIPTS.md`.
+  `rollback.sh` (mutating, execute-or-STOP; require plan root) and `run-verify.sh`
+  (read/verify, execute-or-infer). Authoring conventions live in the repo-root
+  `SCRIPTS.md`.
 - `templates/` - the bus contracts (`handoff.md`, `handback.md`) and the literal
   cold-start `dispatch-prompt.md`.

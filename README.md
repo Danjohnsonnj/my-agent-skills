@@ -38,8 +38,9 @@ into `plan-build`.
 
 **What:** the **WRITE/maintain** side of session continuity. It creates and
 maintains a durable, cold-start-resumable **handoff brief tree** under
-`docs/_plan/` (`HANDOFF.md` entry point + on-demand leaves: `process.md`,
+`docs/plans/<effort-slug>/` (`HANDOFF.md` entry point + on-demand leaves: `process.md`,
 `product-brief.md`, `tech-brief.md`, `phases.md`, `progress-log.md`, `lessons.md`).
+Legacy single-effort trees may still use `docs/_plan/`.
 
 **Why / when:** use it to crystallize the decisions from `start-interview` into artifacts
 that *any* cold-start agent can resume from. Entry is **explicit** — an agent is
