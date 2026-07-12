@@ -105,7 +105,7 @@ A chunk is **the smallest unit with one deterministic verify, worth one onboardi
 
 If no approved plan exists, plan first (planning is interactive, so it stays user-in-the-loop):
 
-- The **orchestrator runs the planning interview itself** (grill-me-style), because a headless subagent cannot talk to the user.
+- The **orchestrator runs the planning interview itself** (start-interview-style), because a headless subagent cannot talk to the user.
 - **Read-only research subagents** do token-heavy legwork (codebase mapping, "how does X work today"); only findings return.
 - Decisions and trade-offs stay with the orchestrator+user and produce an approved `phases.md`/spec via `plan-build`.
 - After approval, do a deliberate orchestrator handoff so build starts on a fresh, lean orchestrator.

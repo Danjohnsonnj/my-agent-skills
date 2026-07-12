@@ -64,7 +64,7 @@ decisions below follow from those two facts.
 | 4 | Bus persistence | **Durable, not ephemeral** — the bus is persisted on disk for the life of the plan+build, then deleted. |
 | 5 | Bus shape | **Role-split pair, overwritten in place:** `docs/_plan/_bus/handoff.md` (orchestrator-only writer) + `handback.md` (subagent-only writer). History lives in `progress-log.md`. |
 | 6 | Chunk granularity | **Orchestrator-sized** within bounds (cluster tiny steps, split big ones, refine from the partial-handback rate), anchored on *"smallest unit with one deterministic verify, worth one onboarding."* **Coupling override:** tightly coupled work (technical or conceptual) is kept whole in a single chunk. |
-| 7 | Planning phase | **Hybrid with a strong user-in-the-loop.** The orchestrator conducts the (grill-me-style) planning interview *itself*, because only it can talk to the user; read-only research subagents do discovery legwork; decisions stay in the orchestrator. |
+| 7 | Planning phase | **Hybrid with a strong user-in-the-loop.** The orchestrator conducts the (start-interview-style) planning interview *itself*, because only it can talk to the user; read-only research subagents do discovery legwork; decisions stay in the orchestrator. |
 | 8 | Validation approach | **Build it; the user observes informally.** No formal metrics or kill criterion for now. |
 | 9 | Workspace state | **Git checkpoint + rollback** via an orchestrator-owned WIP mechanism (dedicated branch or stash/tags, not real commits). Green-on-exit is the target for completed chunks. **Subagents never commit; the orchestrator owns git.** |
 | 10 | Packaging | **New sibling skill `orchestrate-build`** that depends on `plan-build`. The bus, dispatch template, re-verify loop, checkpointing, and escape hatches live in the new skill; the artifact templates stay in `plan-build`. |
@@ -188,7 +188,7 @@ can leave the working tree physically broken for the next chunk. Re-verification
 Planning is the most critical phase and is interactive by nature, so it keeps a
 strong user-in-the-loop:
 
-- The **orchestrator conducts the planning interview itself** (a grill-me-style
+- The **orchestrator conducts the planning interview itself** (a start-interview-style
   back-and-forth), because a headless subagent cannot talk to the user.
 - The **token-heavy legwork** of planning — codebase mapping, "how does X work
   today," gathering constraints — is dispatched to **read-only research

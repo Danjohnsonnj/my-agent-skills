@@ -16,7 +16,7 @@ to flow into one another in this order:
 
 ```mermaid
 flowchart LR
-    grill["grill-me<br/>(decide)"] --> plan["plan-build<br/>(write & maintain)"]
+    grill["start-interview<br/>(decide)"] --> plan["plan-build<br/>(write & maintain)"]
     plan --> review["review-plan<br/>(check)"]
     review -->|approved| drive["orchestrate-build<br/>(drive the build)"]
     review -->|fixes| plan
@@ -24,7 +24,7 @@ flowchart LR
     harvest -->|proposals| review
 ```
 
-### 1. `grill-me` — decide
+### 1. `start-interview` — decide
 
 **What:** interviews you relentlessly about a plan or design, walking each branch
 of the decision tree one decision at a time, with a recommended answer for each.
@@ -41,7 +41,7 @@ maintains a durable, cold-start-resumable **handoff brief tree** under
 `docs/_plan/` (`HANDOFF.md` entry point + on-demand leaves: `process.md`,
 `product-brief.md`, `tech-brief.md`, `phases.md`, `progress-log.md`, `lessons.md`).
 
-**Why / when:** use it to crystallize the decisions from `grill-me` into artifacts
+**Why / when:** use it to crystallize the decisions from `start-interview` into artifacts
 that *any* cold-start agent can resume from. Entry is **explicit** — an agent is
 pointed at `HANDOFF.md` directly (the skill does not inject an `AGENTS.md`
 pointer). It pairs with the external READ-side skills `resume-work` /
@@ -76,7 +76,7 @@ loop, re-verification, checkpointing, and escape hatches.
 
 ## How they connect (the throughline)
 
-- `grill-me` resolves the **decision tree** → `plan-build` crystallizes it into a
+- `start-interview` resolves the **decision tree** → `plan-build` crystallizes it into a
   durable `HANDOFF.md` tree → `review-plan` **gates** that plan against the quality
   bar → `orchestrate-build` **executes** it chunk-by-chunk, reusing the
   `plan-build` artifacts unchanged.
@@ -113,7 +113,7 @@ effect immediately:
 
 ```bash
 cd /path/to/my-agent-skills
-for s in grill-me plan-build review-plan orchestrate-build; do
+for s in start-interview plan-build review-plan orchestrate-build; do
   ln -s "$PWD/$s" ~/.agents/skills/"$s"
   # optionally also: ln -s "$PWD/$s" ~/.cursor/skills/"$s"
 done
@@ -124,7 +124,7 @@ for Cursor's built-in skills.
 
 ## Repo layout
 
-- `grill-me/` — guided-discovery interview (prose-only; interviewing is judgment).
+- `start-interview/` — guided-discovery interview (prose-only; interviewing is judgment).
 - `plan-build/` — handoff brief tree author/maintainer (`SKILL.md`, `reference.md`,
   `templates/`).
 - `review-plan/` — plan reviewer (`SKILL.md`, `reference.md`,
