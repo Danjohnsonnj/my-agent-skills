@@ -9,9 +9,16 @@
 
 ## Execution gaps (ordered)
 
-1. **Phase 6 remaining:** smoke verify (local/mobile/clipboard/install diff); GH Pages from `/docs`
-2. **Phase 7:** review-plan + maintenance handoff
-3. **Fast-follow:** generate illustrations from design-lock prompt pack (warm cream; do not use old blue accent)
+1. **Phase 7:** review-plan + maintenance handoff
+2. **Fast-follow:** generate illustrations from design-lock prompt pack (warm cream; do not use old blue accent)
+
+## Deploy
+
+| Item | Value |
+|---|---|
+| URL | https://danjohnsonnj.github.io/my-agent-skills/ |
+| Source | `main` branch, `/docs` |
+| Enabled | 2026-07-11 |
 
 ## Locked site stack
 

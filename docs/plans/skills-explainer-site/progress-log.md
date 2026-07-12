@@ -62,3 +62,10 @@
 - Verified: install loop matches README; footer → `plans/skills-explainer-site/HANDOFF.md`; img empty + `.gitkeep`.
 - Learned: Lock tokens early, but treat first visual UAT as a palette amendment gate before generating illustrations.
 - Overwrote: design-lock (direction + prompt pack), tech-brief, HANDOFF, phases, lessons, progress-log; added docs/index.html + assets
+
+## 2026-07-11 - Session 6: Phase 6 smoke + deploy
+
+- Happened: Local smoke (desktop + ~390px width, clipboard Copy→Copied with install text, footer HANDOFF 200, install === README). Merged `promo-website` → `main`; enabled GH Pages (`main` / `/docs`). Live build status `built`.
+- Verified: https://danjohnsonnj.github.io/my-agent-skills/ (200); CSS + HANDOFF markdown 200; live accent `#ebe6dc`.
+- Learned: First Pages API enable needs JSON `source` object; merge conflicts with main’s review-plan subroutine resolved by keeping named-plan path checks.
+- Overwrote: HANDOFF, phases, tech-brief, progress-log
