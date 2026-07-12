@@ -26,13 +26,14 @@
 ## Phase 5 - Design lock ✅
 
 - [`design-lock.md`](design-lock.md) approved 2026-07-11 — tokens, skim-strip + skill-block layout, motion, illustration prompt pack; summary in tech-brief.
-- Verify: user approved written lock.
+- Verify: user approved written lock. **Build amended accent** to warm cream (documented in design-lock); illustration prompts updated to match.
 
 ## Phase 6 - Build & deploy (current)
 
-- `docs/index.html` + `docs/assets/{css,js,img}/` per content-outline.md + decisions.md.
+- `docs/index.html` + `docs/assets/{css,js,img}/` per content-outline.md + decisions.md + design-lock (warm cream palette).
 - GH Pages from `/docs`; install snippet === README; copy button; footer → `plans/skills-explainer-site/HANDOFF.md`.
 - Verify: local preview; deploy URL; mobile smoke; clipboard; footer link; install diff vs README clean.
+- Art: optional; when generating, follow design-lock prompt pack (cream accent, no blue).
 
 ## Phase 7 - Review & handoff
 

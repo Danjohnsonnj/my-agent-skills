@@ -55,3 +55,10 @@
 - Verified: Approval checklist in design-lock.md checked; Phase 5 marked ✅.
 - Learned: none new (followed product-brief + G locks).
 - Overwrote: design-lock.md (new), HANDOFF, phases, tech-brief, progress-log
+
+## 2026-07-11 - Session 5: Phase 6 page + palette sync
+
+- Happened: Built vanilla site (`docs/index.html`, `assets/css|js|img`). Build amended accent from cool blue to warm cream on warm ink; user validated (“great”). Expanded illustration prompt pack + constraints so fast-follow art matches shipped CSS (no blue glow; cream thread; don’t compete with CSS rail/brand).
+- Verified: install loop matches README; footer → `plans/skills-explainer-site/HANDOFF.md`; img empty + `.gitkeep`.
+- Learned: Lock tokens early, but treat first visual UAT as a palette amendment gate before generating illustrations.
+- Overwrote: design-lock (direction + prompt pack), tech-brief, HANDOFF, phases, lessons, progress-log; added docs/index.html + assets

@@ -8,11 +8,13 @@
 
 ## Direction (one sentence)
 
-Dark engineering workbench: ink-depth surfaces, crisp type, and a **continuity rail** through the four lifecycle steps as the single signature — Linear clarity + Superset craft, not a generic neon-on-black or purple SaaS landing.
+Dark engineering workbench: **warm** ink-depth surfaces, crisp type, and a **continuity rail** through the four lifecycle steps as the single signature — Linear clarity + Superset craft, not a generic neon-on-black or purple SaaS landing.
 
 **Signature:** the lifecycle skim strip (connected rail + four verb steps). Everything else stays quiet.
 
-**Avoid (explicit):** purple/indigo gradient themes; cream + terracotta serif; broadsheet columns; acid-green accent on pure black; card stacks in the hero; pill clusters / stat strips.
+**Palette amendment (build, 2026-07-11):** cool blue accent (`#5b8def`) replaced by soft cream (`#ebe6dc`) on warm ink (`#0f0e0c`). User validated on the live page — treat this as the locked palette for CSS **and** future illustrations.
+
+**Avoid (explicit):** purple/indigo gradient themes; light cream *page* + terracotta serif (AI light-theme cluster); broadsheet columns; acid-green or saturated blue accents on pure black; card stacks in the hero; pill clusters / stat strips; blue “tech glow” in art that fights the cream rail.
 
 ---
 
@@ -24,16 +26,16 @@ Ship as custom properties on `:root` in `docs/assets/css/site.css`.
 
 | Token | Hex / value | Role |
 |---|---|---|
-| `--bg` | `#0c0e12` | Page ground |
-| `--bg-elevated` | `#12151c` | Hero / sticky nav wash |
-| `--surface` | `#171b24` | Skill blocks, install panel |
-| `--border` | `#2a3140` | Hairlines, block edges |
-| `--text` | `#e8eaef` | Primary copy |
-| `--text-muted` | `#8b93a7` | Supporting, nav secondary |
-| `--accent` | `#5b8def` | CTAs, rail, focus ring |
-| `--accent-soft` | `rgba(91, 141, 239, 0.14)` | Soft fills (CTA secondary, rail glow at low opacity) |
+| `--bg` | `#0f0e0c` | Page ground |
+| `--bg-elevated` | `#161513` | Hero / sticky nav wash |
+| `--surface` | `#1c1b18` | Skill blocks, install panel |
+| `--border` | `#33312c` | Hairlines, block edges |
+| `--text` | `#ebeae8` | Primary copy |
+| `--text-muted` | `#999287` | Supporting, nav secondary |
+| `--accent` | `#ebe6dc` | CTAs, rail, focus ring |
+| `--accent-soft` | `rgba(235, 230, 220, 0.14)` | Soft fills (CTA secondary, rail glow at low opacity) |
 | `--optional` | `#7a9e7e` | Quiet “optional” mark on orchestrate-build only |
-| `--code-bg` | `#0a0c10` | Install snippet panel |
+| `--code-bg` | `#0d0c0b` | Install snippet panel |
 
 Atmosphere: subtle radial gradient from `--bg-elevated` toward `--bg` (top-center), optional 2–3% noise via CSS only — no full-bleed photo required for v1.
 
@@ -187,19 +189,41 @@ Fonts: Google Fonts link for Plus Jakarta Sans + JetBrains Mono (or self-host la
 
 ## Illustration prompt pack (fast-follow)
 
-Shared style line for all prompts:  
-*Dark UI illustration, ink charcoal background (#0c0e12), cool slate surfaces, single soft blue accent (#5b8def), clean geometric shapes, no purple neon, no glossy 3D clay, no stock people photos, editorial product-diagram feel, generous negative space.*
+**When generating:** match the **shipped** page (`docs/index.html` + `site.css`), not the original cool-blue draft. Art supports type; it does not replace the CSS rail or the brand wordmark.
 
-1. **Hero — continuity**  
-   Metaphor for cold-start resumability: a thin luminous thread connecting two sparse document/node shapes across a dark field; one node labeled faintly like a handoff leaf. Landscape, left-heavy negative space for type.
+### Constraints (non-negotiable)
 
-2. **Lifecycle — four-step support**  
-   Four nodes on a horizontal rail (Decide / Write / Check / Drive), matching the skim strip; subtle handoff “packet” between Write and Check. Wide aspect for beside/below strip.
+- **Palette:** warm ink `#0f0e0c` / elevated `#161513` / surface `#1c1b18`; luminous lines and nodes in soft cream `#ebe6dc` (or `#ebeae8`); muted warm gray `#999287` for secondary marks only. Optional quiet green `#7a9e7e` only if marking “optional.”
+- **No blue glow, purple, neon, cyan HUD, clay 3D, stock photos, or busy isometric cities.**
+- **Quiet diagram language:** thin threads, sparse nodes, document/leaf shapes — editorial product diagram, not marketing splash.
+- **Negative space:** leave clear regions for HTML type (hero brand especially). Prefer left- or right-weighted empty fields.
+- **Do not redraw the full four-step rail as a competing hero** — the page already owns that signature in CSS. Lifecycle art should *echo* (softer, fewer labels) or sit beside/below the strip.
+- **Texture:** page already has subtle CSS noise; keep illustration fills flat or lightly grainy, not heavily speckled.
 
-3. **Optional — harvest**  
-   Small accretion diagram: a lessons stack feeding a gated arrow into a skill document; quiet, not celebratory. Square or 4:3.
+### Shared style line
 
-v1: leave `img/` empty or use CSS-only rail; drop PNGs when generated without blocking launch.
+*Dark warm-charcoal UI illustration, background #0f0e0c, surfaces #1c1b18, single soft cream luminous accent #ebe6dc, thin geometric continuity thread, sparse nodes, editorial product-diagram, generous negative space for typography, no blue neon, no purple, no glossy 3D clay, no people photos.*
+
+### Prompts
+
+1. **Hero — continuity** (landscape, ~16:9 or wider; type sits left or center-left)  
+   Sparse metaphor for cold-start resumability: a thin cream luminous thread connecting two quiet document/node shapes on warm ink; one node suggests a handoff leaf (`HANDOFF`). Large empty field for the brand wordmark. No logos, no readable fake UI chrome.
+
+2. **Lifecycle — support** (wide; below or beside the CSS skim strip)  
+   Soft echo of Decide → Write → Check → Drive: four small cream nodes on a faint rail, labels minimal or absent (HTML carries verbs). Optional tiny “packet” between Write and Check. Must not overpower the live strip — lower contrast than on-page rail.
+
+3. **Optional — harvest** (square or 4:3; principles / footer-adjacent)  
+   Quiet accretion: a small stack of lesson leaves feeding a gated arrow into a skill document. Warm ink + cream only; not celebratory; no trophies or confetti.
+
+v1: `docs/assets/img/` may stay empty (`.gitkeep` only); drop assets when generated without blocking launch. Filenames when added: `hero-continuity.*`, `lifecycle-support.*`, `harvest.*`.
+
+### Placement notes (Phase 6+)
+
+| Asset | Slot |
+|---|---|
+| Hero | Optional under CTAs or as non-blocking side plane — never overlay brand text |
+| Lifecycle | Optional under `.lifecycle__narrative` or beside rail on wide viewports |
+| Harvest | Optional near principles harvest line; omit if noisy |
 
 ---
 

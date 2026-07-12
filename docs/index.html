@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>my-agent-skills — cold-start continuity for multi-session agent work</title>
+  <meta name="description" content="A suite of installable Cursor/agent skills that decide, write, check, and drive multi-session software work — with explicit handoffs and human-gated learning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+  <header class="site-nav">
+    <div class="wrap site-nav__inner">
+      <a class="site-nav__brand" href="#top">my-agent-skills</a>
+      <nav aria-label="Page">
+        <ul class="site-nav__links">
+          <li><a href="#lifecycle">Lifecycle</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#install">Install</a></li>
+          <li><a href="#principles">Principles</a></li>
+          <li><a class="nav-github" href="https://github.com/Danjohnsonnj/my-agent-skills">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-brand">
+      <div class="wrap">
+        <h1 id="hero-brand" class="hero__brand">my-agent-skills</h1>
+        <p class="hero__headline">Cold-start continuity for multi-session agent work.</p>
+        <p class="hero__support">Four installable skills that decide, write, check, and drive — so the next session picks up from a handoff, not a forgotten chat.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="#install">Install</a>
+          <a class="btn btn--secondary" href="https://github.com/Danjohnsonnj/my-agent-skills">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="lifecycle" class="section" aria-labelledby="lifecycle-title">
+      <div class="wrap">
+        <p class="section__label">Lifecycle</p>
+        <h2 id="lifecycle-title" class="section__title">Decide → write → check → drive</h2>
+
+        <ol class="rail" data-rail>
+          <li class="rail__step">
+            <div class="rail__track" aria-hidden="true">
+              <span class="rail__node"></span>
+              <span class="rail__line"></span>
+            </div>
+            <div class="rail__body">
+              <p class="rail__verb">Decide</p>
+              <p class="rail__skill">start-interview</p>
+              <p class="rail__line-copy">Resolve forks before anything is written.</p>
+            </div>
+          </li>
+          <li class="rail__step">
+            <div class="rail__track" aria-hidden="true">
+              <span class="rail__node"></span>
+              <span class="rail__line"></span>
+            </div>
+            <div class="rail__body">
+              <p class="rail__verb">Write</p>
+              <p class="rail__skill">plan-build</p>
+              <p class="rail__line-copy">Crystallize decisions into a cold-start HANDOFF tree.</p>
+            </div>
+          </li>
+          <li class="rail__step">
+            <div class="rail__track" aria-hidden="true">
+              <span class="rail__node"></span>
+              <span class="rail__line"></span>
+            </div>
+            <div class="rail__body">
+              <p class="rail__verb">Check</p>
+              <p class="rail__skill">review-plan</p>
+              <p class="rail__line-copy">Gate the plan against quality while fixes are still cheap.</p>
+            </div>
+          </li>
+          <li class="rail__step">
+            <div class="rail__track" aria-hidden="true">
+              <span class="rail__node"></span>
+              <span class="rail__line"></span>
+            </div>
+            <div class="rail__body">
+              <p class="rail__verb">Drive</p>
+              <p class="rail__skill">orchestrate-build</p>
+              <p class="rail__line-copy">Optional chunk-by-chunk build with cold-start subagents.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="lifecycle__narrative">You rarely need all four. They are designed to flow in this order — and to survive a new chat, a new agent, or a week away — because continuity lives in files, not in-context memory.</p>
+      </div>
+    </section>
+
+    <section id="connect" class="section" aria-labelledby="connect-title">
+      <div class="wrap">
+        <p class="section__label">Throughline</p>
+        <h2 id="connect-title" class="section__title">How they connect</h2>
+        <div class="prose">
+          <p><code>start-interview</code> resolves the decision tree → <code>plan-build</code> crystallizes it into a durable <code>HANDOFF.md</code> tree → <code>review-plan</code> gates that plan → <code>orchestrate-build</code> executes it chunk-by-chunk, reusing the same artifacts.</p>
+          <p>Every handoff between phases and sessions is explicit and cold-start-resumable. The unit of continuity is <code>HANDOFF.md</code>, not an agent’s chat history.</p>
+          <p>The loop closes with project-local <code>lessons.md</code>. A periodic, human-gated harvest turns recurring lessons into proposed suite edits — never automatic self-edits to the control plane.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section" aria-labelledby="skills-title">
+      <div class="wrap">
+        <p class="section__label">Skills</p>
+        <h2 id="skills-title" class="section__title">Four peers, one lifecycle</h2>
+
+        <ul class="skills-grid">
+          <li class="skill-block">
+            <div class="skill-block__head">
+              <h3 class="skill-block__name">start-interview</h3>
+              <p class="skill-block__role">Decide</p>
+            </div>
+            <dl>
+              <dt>What</dt>
+              <dd>Interviews you relentlessly about a plan or design, one decision at a time, with a recommended answer for each.</dd>
+              <dt>When</dt>
+              <dd>Before anything is written — when requirements are vague or a design has unresolved forks.</dd>
+              <dt>Why</dt>
+              <dd>Converts a fuzzy idea into resolved decisions, then hands off into plan mode / <code>plan-build</code>.</dd>
+              <dt>How to start</dt>
+              <dd>Invoke <code>/start-interview</code> (or ask to stress-test a plan or design).</dd>
+            </dl>
+            <a class="skill-block__link" href="https://github.com/Danjohnsonnj/my-agent-skills/blob/main/start-interview/SKILL.md">SKILL.md →</a>
+          </li>
+
+          <li class="skill-block">
+            <div class="skill-block__head">
+              <h3 class="skill-block__name">plan-build</h3>
+              <p class="skill-block__role">Write &amp; maintain</p>
+            </div>
+            <dl>
+              <dt>What</dt>
+              <dd>Creates and maintains a durable handoff brief tree under <code>docs/plans/&lt;effort-slug&gt;/</code>, with <code>HANDOFF.md</code> as the entry point.</dd>
+              <dt>When</dt>
+              <dd>After decisions are locked — when you need artifacts any cold-start agent can resume from.</dd>
+              <dt>Why</dt>
+              <dd>Continuity rides on an explicit handoff, not an injected pointer or leftover chat context.</dd>
+              <dt>How to start</dt>
+              <dd>Ask to stand up or refresh a plan / handoff for the effort.</dd>
+            </dl>
+            <a class="skill-block__link" href="https://github.com/Danjohnsonnj/my-agent-skills/blob/main/plan-build/SKILL.md">SKILL.md →</a>
+          </li>
+
+          <li class="skill-block">
+            <div class="skill-block__head">
+              <h3 class="skill-block__name">review-plan</h3>
+              <p class="skill-block__role">Check</p>
+            </div>
+            <dl>
+              <dt>What</dt>
+              <dd>Two-phase plan review against quality gates; applies only what you approve, then re-reviews. Includes a resumability lens and reference checks.</dd>
+              <dt>When</dt>
+              <dd>On a <code>plan-build</code> plan (or any plan) before building.</dd>
+              <dt>Why</dt>
+              <dd>Catch broken references, scope creep, and unclear steps while they are still cheap to fix.</dd>
+              <dt>How to start</dt>
+              <dd>Ask to review the plan, triage feedback, or check it against the gates.</dd>
+            </dl>
+            <a class="skill-block__link" href="https://github.com/Danjohnsonnj/my-agent-skills/blob/main/review-plan/SKILL.md">SKILL.md →</a>
+          </li>
+
+          <li class="skill-block">
+            <div class="skill-block__head">
+              <h3 class="skill-block__name">orchestrate-build</h3>
+              <p class="skill-block__role">Drive</p>
+              <p class="skill-block__optional">optional</p>
+            </div>
+            <dl>
+              <dt>What</dt>
+              <dd>Breaks an approved plan into chunks and dispatches each to a serialized cold-start subagent, with re-verify, checkpoint, and escape hatches.</dd>
+              <dt>When</dt>
+              <dd>Once an approved <code>plan-build</code> tree exists and you want chunk-by-chunk build automated.</dd>
+              <dt>Why</dt>
+              <dd>Adds the bus and dispatch loop without changing the plan artifacts — opt-in once a plan exists.</dd>
+              <dt>How to start</dt>
+              <dd>Point it at an approved plan tree when you are ready to drive the build.</dd>
+            </dl>
+            <a class="skill-block__link" href="https://github.com/Danjohnsonnj/my-agent-skills/blob/main/orchestrate-build/SKILL.md">SKILL.md →</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="install" class="section" aria-labelledby="install-title">
+      <div class="wrap">
+        <p class="section__label">Install</p>
+        <h2 id="install-title" class="section__title">Symlink into your skills path</h2>
+        <p class="install-lead">Each skill installs as a symlink so edits in this repo take effect immediately.</p>
+
+        <div class="install-panel">
+          <button type="button" class="install-panel__copy" data-copy-install aria-label="Copy install commands">Copy</button>
+          <pre id="install-snippet"><code>cd /path/to/my-agent-skills
+for s in start-interview plan-build review-plan orchestrate-build; do
+  ln -s "$PWD/$s" ~/.agents/skills/"$s"
+  # optionally also: ln -s "$PWD/$s" ~/.cursor/skills/"$s"
+done
+</code></pre>
+        </div>
+        <p class="install-warn">Never place skills under <code>~/.cursor/skills-cursor/</code> — that directory is reserved for Cursor’s built-in skills.</p>
+      </div>
+    </section>
+
+    <section id="principles" class="section" aria-labelledby="principles-title">
+      <div class="wrap">
+        <p class="section__label">Principles</p>
+        <h2 id="principles-title" class="section__title">How the suite stays reliable</h2>
+
+        <ul class="principles">
+          <li>
+            <h3 class="principles__title">Execution reliability over prose</h3>
+            <p class="principles__body">Crystallize deterministic procedure into scripts; degrade gracefully where execution is unavailable.</p>
+          </li>
+          <li>
+            <h3 class="principles__title">Explicit handoff entry</h3>
+            <p class="principles__body">Continuity rides on an explicit <code>HANDOFF.md</code>, not on an injected <code>AGENTS.md</code> pointer.</p>
+          </li>
+          <li>
+            <h3 class="principles__title">Human-gated by default</h3>
+            <p class="principles__body">Commits, scope changes, and any self-improvement of the skills require explicit user approval.</p>
+          </li>
+        </ul>
+
+        <p class="principles__harvest">Projects accrete <code>lessons.md</code>; the suite improves only via reviewed proposals — never automatic self-edits.</p>
+
+        <div class="principles__links">
+          <a href="https://github.com/Danjohnsonnj/my-agent-skills/blob/main/SCRIPTS.md">SCRIPTS.md</a>
+          <a href="https://github.com/Danjohnsonnj/my-agent-skills/blob/main/README.md">README</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div>
+        <a href="https://github.com/Danjohnsonnj/my-agent-skills">GitHub</a>
+        <p class="site-footer__plan">
+          <a href="plans/skills-explainer-site/HANDOFF.md">How this site was planned</a>
+        </p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="#lifecycle">Lifecycle</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#install">Install</a></li>
+          <li><a href="#principles">Principles</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

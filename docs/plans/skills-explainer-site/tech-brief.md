@@ -5,11 +5,13 @@
 - Skill suite - README + four skill dirs (`start-interview/`, `plan-build/`, `review-plan/`, `orchestrate-build/`) + SCRIPTS.md
 - This plan tree - `docs/plans/skills-explainer-site/`
 - Suite default plan path: `docs/plans/<effort-slug>/`; bus: `<plan-root>/_bus/` (legacy `docs/_plan/` noted only)
-- No public site HTML yet
+- Public site (v1 text/CSS): `docs/index.html`, `docs/assets/css/site.css`, `docs/assets/js/site.js`; `docs/assets/img/` empty pending fast-follow art
 
 ## Execution gaps (ordered)
 
-1. **Phase 6:** vanilla site on GH Pages `/docs` per design-lock + content-outline
+1. **Phase 6 remaining:** smoke verify (local/mobile/clipboard/install diff); GH Pages from `/docs`
+2. **Phase 7:** review-plan + maintenance handoff
+3. **Fast-follow:** generate illustrations from design-lock prompt pack (warm cream; do not use old blue accent)
 
 ## Locked site stack
 
@@ -30,11 +32,11 @@
 | Concern | Lock |
 |---|---|
 | Direction | Dark workbench; signature = lifecycle continuity rail |
-| Accent | `#5b8def` on ink `#0c0e12` (not purple / not acid-green) |
+| Accent | `#ebe6dc` cream/off-white on warm ink `#0f0e0c` (**amended in build**; was cool blue — do not regenerate art with blue) |
 | Type | Plus Jakarta Sans + JetBrains Mono |
 | CSS | `docs/assets/css/site.css` (`:root` custom properties) |
 | JS | `docs/assets/js/site.js` |
-| Img | `docs/assets/img/` (empty OK v1) |
+| Img | `docs/assets/img/` (empty OK v1); prompts in design-lock.md |
 | Motion | Hero fade; rail draw-once; smooth-scroll; reduced-motion off |
 
 ## Locked plan-path convention (implemented)

@@ -35,6 +35,13 @@
 - Evidence: G16 lock 2026-07-11
 - Crystallize?: yes — Phase 3 rename across all surfaces
 
+## Warm cream palette (not cool blue)
+
+- Context: Explainer site build / future illustrations
+- Lesson: After visual UAT, accent locked to cream `#ebe6dc` on warm ink `#0f0e0c`. Do not generate art with the draft blue `#5b8def`. Continuity thread in illustrations = cream; CSS rail already owns the signature — art echoes, doesn’t compete.
+- Evidence: Phase 6 build + user OK 2026-07-11; design-lock prompt pack
+- Crystallize?: yes — read design-lock illustration section before any image gen
+
 ## Post-ship site sync check
 
 - Context: After explainer site exists
